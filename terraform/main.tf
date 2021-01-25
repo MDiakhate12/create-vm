@@ -1,4 +1,6 @@
-variable ""
+variable "instance_name" {
+    type= string
+}
 
 provider "google" {
   project = "ept-project-301112"
@@ -7,7 +9,7 @@ provider "google" {
 }
 
 resource "google_compute_instance" "vm_instance" {
-  name         = "terraform-instance-test"
+  name         = var.instance_name
   machine_type = "f1-micro"
 
   boot_disk {
