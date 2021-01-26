@@ -10,16 +10,19 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 
-app.get("/create-vm", (req, res) => {
+app.post("/create-vm", async (req, res) => {
     try {
-        createVM("VM Bou Beess")
-        axios.get('https://faas-cloud-backend.mouhammad.ml/').then((response) => {
-            let data = response.data
-            return res.send(`Created VM: ${data[data.length - 1].name}\n`)
-        }).catch((error) => {
-            console.error(error)
-            return res.status(500).send("VM Not Created")
-        })
+        // console.log(req.body)
+        let ip = await createVM(req.body.name)
+        return res.send(`Created VM: - ${ip}\n`)
+        res.send(req.body)
+
+        // axios.get('https://faas-cloud-backend.mouhammad.ml/').then((response) => {
+        //     let data = response.data
+        // }).catch((error) => {
+        //     console.error(error)
+        //     return res.status(500).send("VM Not Created")
+        // })
     } catch (error) {
         console.error(error.message)
     }

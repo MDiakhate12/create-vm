@@ -1,0 +1,9 @@
+google_compute_instance.vm_instance: Creating...
+google_compute_instance.vm_instance: Still creating... [10s elapsed]
+google_compute_instance.vm_instance: Creation complete after 18s [id=projects/ept-project-301112/zones/europe-west1-c/instances/diaf-vm-test]
+
+Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+ip = 35.233.67.34

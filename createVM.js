@@ -9,6 +9,11 @@ module.exports = async (instance_name /*cpu, memory, disk*/) => {
 
         const { stdout: terraformPlanOutput } = await exec(`make terraform-plan NAME="${instance_name}"`);
         console.log(terraformPlanOutput);
+
+        const { stdout: terraformApplyOutput } = await exec(`make terraform-apply | awk '/ip = / {print $3}'`);
+        console.log(terraformApplyOutput)
+
+        return terraformApplyOutput;
     } catch (error) {
         console.error(error)
     }
